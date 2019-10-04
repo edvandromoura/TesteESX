@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Modelo.Domain.Entities.Usuario>
+
+@{
+    ViewData["Title"] = "Gestão de Usuários";
+}
+
+<h1>Listagem de usuários</h1>
+
+<p>
+    <a asp-action="Create">Novo Usuário</a>
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Localizar pelo Nome: @Html.TextBox("searchName")
+        Ativo: @Html.CheckBox("searchAtivo")
+    </p>
+    <p>
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                Data de nascimento
+            </th>
+            <th>
+                E-mail
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @{
+                    string ativo = item.Ativo ? "Sim" : "Não";
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNascimento.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    Masculino
+                </td>
+                <td>
+                    @ativo
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhe</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

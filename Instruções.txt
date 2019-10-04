@@ -1,0 +1,8 @@
+# Execução de projeto TESTE
+
+1 - Abrir o projeto no visual studio.
+2 - Executar o comando no prompt de comando "update-database".
+3 - Executar o projeto.
+
+OBS: Para alterar a string de conexão, basta realizar a alteração no arquivo "appsettings.Development.json"
+OBS2: Para a execução dos testes, basta utilizar a interface de métodos disponibilizada pelo Swagger (já implementado).
